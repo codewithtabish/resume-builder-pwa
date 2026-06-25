@@ -16,10 +16,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,7 +24,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function DashboardPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -58,7 +61,7 @@ export default function DashboardPage() {
   ];
 
   const filteredResumes = resumes
-    .filter(r => r.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    .filter((r) => r.title.toLowerCase().includes(searchTerm.toLowerCase()))
     .sort((a, b) => {
       if (sortBy === "ats") return b.ats - a.ats;
       if (sortBy === "oldest") return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
@@ -69,19 +72,19 @@ export default function DashboardPage() {
   const avgATS = Math.round(resumes.reduce((sum, r) => sum + r.ats, 0) / totalResumes);
 
   return (
-    <main className="min-h-screen bg-background">
-      <div className="container mx-auto max-w-7xl px-4 py-8">
+    <main className="min-h-screen bg-background pb-20">
+      <div className="container mx-auto max-w-7xl px-4 py-6 md:py-8">
 
         {/* Header */}
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-10">
+        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between mb-8 md:mb-10">
           <div>
-            <h1 className="text-4xl font-bold tracking-tight">My Resumes</h1>
-            <p className="text-muted-foreground mt-2 text-lg">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight">My Resumes</h1>
+            <p className="text-muted-foreground mt-1 text-base md:text-lg">
               Build • Optimize • Land your dream job
             </p>
           </div>
 
-          <Button asChild size="lg" className="shadow-lg">
+          <Button asChild size="lg" className="shadow-lg md:w-auto w-full md:w-fit">
             <Link href="/resume/create">
               <Plus className="mr-2 h-5 w-5" />
               New Resume
@@ -90,7 +93,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Stats Bar */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 md:mb-10">
           <Card>
             <CardContent className="p-6 flex items-center gap-4">
               <div className="p-3 bg-primary/10 rounded-xl">
@@ -152,19 +155,19 @@ export default function DashboardPage() {
           </Select>
         </div>
 
-        {/* Resume Grid */}
+        {/* Resume Grid - Mobile Optimized */}
         {filteredResumes.length > 0 ? (
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
             {filteredResumes.map((resume) => (
-              <Card 
-                key={resume.id} 
-                className="group overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-border/60"
+              <Card
+                key={resume.id}
+                className="group overflow-hidden hover:shadow-xl active:scale-[0.985] transition-all duration-200 border border-border/60"
               >
                 <CardContent className="p-0">
 
                   {/* Resume Preview */}
-                  <div className="relative h-56 bg-gradient-to-br from-muted/70 to-muted p-6 flex items-center justify-center overflow-hidden">
-                    <div className="w-44 scale-90 group-hover:scale-95 transition-transform duration-500 bg-white shadow-md rounded-lg p-4 border">
+                  <div className="relative h-52 md:h-56 bg-gradient-to-br from-muted/70 to-muted p-6 flex items-center justify-center overflow-hidden">
+                    <div className="w-40 md:w-44 scale-90 group-hover:scale-95 transition-transform duration-500 bg-white shadow-md rounded-lg p-4 border">
                       <div className="h-3 w-16 bg-primary/20 rounded mb-4" />
                       <div className="space-y-2.5">
                         <div className="h-1.5 bg-muted-foreground/30 rounded w-3/4" />
@@ -179,10 +182,10 @@ export default function DashboardPage() {
                   </div>
 
                   {/* Card Content */}
-                  <div className="p-6">
+                  <div className="p-5 md:p-6">
                     <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <h3 className="font-semibold text-xl leading-tight line-clamp-2">
+                      <div className="flex-1 pr-2">
+                        <h3 className="font-semibold text-lg md:text-xl leading-tight line-clamp-2">
                           {resume.title}
                         </h3>
                         <p className="text-sm text-muted-foreground mt-1">
@@ -192,7 +195,7 @@ export default function DashboardPage() {
 
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="opacity-70 hover:opacity-100">
+                          <Button variant="ghost" size="icon" className="h-9 w-9 opacity-70 hover:opacity-100 -mr-1">
                             <MoreHorizontal className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
@@ -214,13 +217,13 @@ export default function DashboardPage() {
                           <span className="font-semibold text-primary">{resume.ats}%</span>
                         </div>
                         <div className="h-2 bg-muted rounded-full overflow-hidden">
-                          <div 
+                          <div
                             className="h-full bg-gradient-to-r from-primary to-emerald-500 transition-all"
                             style={{ width: `${resume.ats}%` }}
                           />
                         </div>
                       </div>
-                      <Badge variant={resume.ats >= 90 ? "default" : "secondary"} className="font-mono">
+                      <Badge variant={resume.ats >= 90 ? "default" : "secondary"} className="font-mono shrink-0">
                         {resume.ats}%
                       </Badge>
                     </div>
@@ -231,18 +234,22 @@ export default function DashboardPage() {
 
                     {/* Actions */}
                     <div className="flex gap-3">
-                      <Button asChild className="flex-1">
+                      <Button asChild className="flex-1 h-11">
                         <Link href={`/resume/${resume.id}/edit`}>
                           <Pencil className="mr-2 h-4 w-4" />
                           Edit
                         </Link>
                       </Button>
 
-                      <Button variant="outline" size="icon" title="Download PDF">
+                      <Button variant="outline" size="icon" className="h-11 w-11" title="Download PDF">
                         <Download className="h-4 w-4" />
                       </Button>
 
-                      <Button variant="outline" size="icon" className="text-red-500 hover:text-red-600 hover:bg-red-50">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="h-11 w-11 text-red-500 hover:text-red-600 hover:bg-red-50"
+                      >
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -256,7 +263,7 @@ export default function DashboardPage() {
             <FileText className="mx-auto h-16 w-16 text-muted-foreground" />
             <h3 className="mt-6 text-2xl font-semibold">No resumes found</h3>
             <p className="text-muted-foreground mt-2">Create your first resume to get started</p>
-            <Button asChild className="mt-6">
+            <Button asChild className="mt-6" size="lg">
               <Link href="/resume/create">Create Your First Resume</Link>
             </Button>
           </div>
@@ -265,11 +272,11 @@ export default function DashboardPage() {
         {/* Mobile FAB */}
         <Button
           size="lg"
-          className="fixed bottom-6 right-6 rounded-full shadow-2xl md:hidden h-14 w-14"
+          className="fixed bottom-6 right-6 rounded-full shadow-2xl md:hidden h-16 w-16 z-50"
           asChild
         >
           <Link href="/resume/create">
-            <Plus className="h-6 w-6" />
+            <Plus className="h-7 w-7" />
           </Link>
         </Button>
       </div>
