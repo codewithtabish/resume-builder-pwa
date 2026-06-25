@@ -23,6 +23,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Badge } from "@/components/ui/badge";
 
 export default function DashboardPage() {
   const resumes = [
@@ -71,55 +72,61 @@ export default function DashboardPage() {
         </div>
 
         {/* Stats */}
-        <div className="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardContent className="p-5">
-              <p className="text-sm text-muted-foreground">
-                Total Resumes
-              </p>
+       ```tsx
+{/* Resume Card Design */}
 
-              <h2 className="mt-2 text-3xl font-bold">
-                12
-              </h2>
-            </CardContent>
-          </Card>
+<Card className="group overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl">
+  <CardContent className="p-0">
 
-          <Card>
-            <CardContent className="p-5">
-              <p className="text-sm text-muted-foreground">
-                Downloads
-              </p>
+    {/* Fake Resume Preview */}
+    <div className="h-52 border-b bg-muted/40 p-4">
+<div className="mx-auto h-full max-w-40 rounded-lg border bg-background p-3 shadow-sm">
 
-              <h2 className="mt-2 text-3xl font-bold">
-                48
-              </h2>
-            </CardContent>
-          </Card>
+        <div className="mb-3 h-3 w-20 rounded bg-primary/20" />
 
-          <Card>
-            <CardContent className="p-5">
-              <p className="text-sm text-muted-foreground">
-                Average ATS
-              </p>
-
-              <h2 className="mt-2 text-3xl font-bold">
-                92%
-              </h2>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-5">
-              <p className="text-sm text-muted-foreground">
-                Templates Used
-              </p>
-
-              <h2 className="mt-2 text-3xl font-bold">
-                8
-              </h2>
-            </CardContent>
-          </Card>
+        <div className="space-y-2">
+          <div className="h-2 rounded bg-muted" />
+          <div className="h-2 rounded bg-muted" />
+          <div className="h-2 w-3/4 rounded bg-muted" />
         </div>
+
+        <div className="mt-4 space-y-2">
+          <div className="h-2 rounded bg-muted" />
+          <div className="h-2 rounded bg-muted" />
+        </div>
+      </div>
+    </div>
+
+    <div className="p-5">
+      <div className="flex items-center justify-between">
+        <h3 className="font-semibold">
+          Senior Frontend Developer
+        </h3>
+
+        <Badge>
+          ATS 94%
+        </Badge>
+      </div>
+
+      <p className="mt-2 text-sm text-muted-foreground">
+        Updated 2 hours ago
+      </p>
+
+      <div className="mt-5 flex gap-2">
+        <Button className="flex-1">
+          Edit
+        </Button>
+
+        <Button variant="outline">
+          Download
+        </Button>
+      </div>
+    </div>
+
+  </CardContent>
+</Card>
+```
+
 
         {/* Search */}
         <div className="relative mb-8">
