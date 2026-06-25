@@ -55,42 +55,42 @@ export function Onboarding() {
   };
 
   return (
-    <main className="relative flex min-h-dvh flex-col overflow-hidden bg-white dark:bg-black transition-colors ">
-
+<main className="relative flex h-dvh flex-col overflow-hidden bg-white dark:bg-black transition-colors">
       {/* Top Right Mode Toggle */}
       <div className="absolute right-5 top-5 z-50">
        <ModeToggle/>
       </div>
 
       {/* Content */}
-      <section className="relative z-10 flex flex-1 flex-col justify-center px-6 text-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={slide.id}
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.35 }}
-            className="mx-auto w-full max-w-md space-y-8"
-          >
-            <OnboardingIllustration
-              image={slide.image}
-              title={slide.title}
-            />
+      <section className="relative z-10 flex flex-1 items-center justify-center px-6">
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={slide.id}
+      initial={{ opacity: 0, x: 40 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -40 }}
+      transition={{ duration: 0.35 }}
+      className="mx-auto flex w-full max-w-md flex-col items-center text-center"
+    >
+      <OnboardingIllustration
+        image={slide.image}
+        title={slide.title}
+      />
 
-            <div className="space-y-4">
-              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl text-gray-900 dark:text-white">
-                {typedTitle}
-                <span className="animate-pulse">|</span>
-              </h1>
+      <div className="mt-6 space-y-4">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          {typedTitle}
+          <span className="animate-pulse">|</span>
+        </h1>
 
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                {typedDesc}
-              </p>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </section>
+        <p className="mx-auto max-w-sm text-sm leading-relaxed text-muted-foreground sm:text-base">
+          {typedDesc}
+        </p>
+      </div>
+    </motion.div>
+  </AnimatePresence>
+</section>
+
 
       {/* Footer */}
       <footer className="relative z-10 px-6 pb-8">
